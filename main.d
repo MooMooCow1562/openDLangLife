@@ -8,6 +8,7 @@ import arsd.jsvar;
 import std.file : readText;
 
 void main(){
+
 	var ruleset = var.fromJson(readText("ruleset/ruleset.json"));
 	auto window = new NVGWindow(800, 600, ruleset["automata name"]);
 	writeln(ruleset);
@@ -15,6 +16,12 @@ void main(){
 	auto dims = ruleset["board dimensions"].get!(int[]);
 	auto fullWidth = dims[0];
 	auto fullHeight = dims[1];
+	import std.random;
+	auto rnd = Random(7);
+	squareLife sq = new squareLife(dims[0], dims[1], 0);
+	for(int i = 0; i< fullWidth * fullHeight; i++){
+		sq.setCell(i / fullWidth, i %fullHeight, cast(ubyte)uniform(0, 2, rnd));
+	}
 	window.redrawNVGScene = delegate (nvg){
 		for(int width = 0; width < fullWidth; width++){
 			for(int height = 0; height < fullHeight; height++){
@@ -22,12 +29,7 @@ void main(){
 				nvg.beginPath();
 				nvg.strokeColor = NVGColor.green;
 				nvg.strokeWidth = 2;
-				if(width %2 ==0){
-					nvg.fillColor = nvgRGB(colors[0]);
-				}
-				else{
-					nvg.fillColor = nvgRGB(colors[1]);			
-				}
+				nvg.fillColor = nvgRGB(colors[sq.getCell(width, height)]);
 				nvg.rect(width*10, height*10, 10, 10);
 				nvg.fill();
 				nvg.stroke();
