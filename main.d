@@ -10,8 +10,11 @@ import std.file : readText;
 void main(){
 	var ruleset = var.fromJson(readText("ruleset/ruleset.json"));
 	auto window = new NVGWindow(800, 600, ruleset["automata name"]);
-	auto fullWidth = (ruleset["board dimensions"])[0];
-	auto fullHeight = (ruleset["board dimensions"])[1];
+	writeln(ruleset);
+	writeln(ruleset["board dimensions"]);
+	auto dims = ruleset["board dimensions"].get!(int[]);
+	auto fullWidth = dims[0];
+	auto fullHeight = dims[1];
 	window.redrawNVGScene = delegate (nvg){
 		nvg.beginPath();
 		nvg.strokeColor = NVGColor.green;
