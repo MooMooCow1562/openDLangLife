@@ -1,0 +1,29 @@
+{
+	"automata name" : "Conway's game of life",
+	"board dimensions" : [50, 50],
+	"cell names" : ["dead", "alive"],
+	"cell values" : [0,1],
+	"cell colors": ["#333333","#CCCCCC"],
+	"rules":{
+		"transformations" : {
+			"a->b" : [
+				["dead", "alive"],
+				["alive", "alive"],
+				["alive", "dead"]
+			],
+			"nieghbors needed" : [
+				[3],
+				[2, 3],
+				[-1]
+			]
+		},
+		"kernel" : {
+			"dimensions" : [3, 3],
+			"grid" : [1, 1, 1,
+					  1, 0, 1,
+					  1 ,1 ,1],
+			"offsets": [-1],
+			"center" : [1,1]
+		}
+	}
+}
