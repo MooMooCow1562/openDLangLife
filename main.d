@@ -16,15 +16,23 @@ void main(){
 	auto fullWidth = dims[0];
 	auto fullHeight = dims[1];
 	window.redrawNVGScene = delegate (nvg){
-		nvg.beginPath();
-		nvg.strokeColor = NVGColor.green;
-		nvg.strokeWidth = 2;
 		for(int width = 0; width < fullWidth; width++){
 			for(int height = 0; height < fullHeight; height++){
+				auto colors  = ruleset["cell colors"].get!(string[]);
+				nvg.beginPath();
+				nvg.strokeColor = NVGColor.green;
+				nvg.strokeWidth = 2;
+				if(width %2 ==0){
+					nvg.fillColor = nvgRGB(colors[0]);
+				}
+				else{
+					nvg.fillColor = nvgRGB(colors[1]);			
+				}
 				nvg.rect(width*10, height*10, 10, 10);
+				nvg.fill();
+				nvg.stroke();
 			}
 		}
-		nvg.stroke();
 	};
 	
 	window.eventLoop(0,
