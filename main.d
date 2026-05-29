@@ -19,10 +19,10 @@ void main(){
 	import std.random;
 	auto rnd = Random(7);
 	squareLife sq = new squareLife(dims[0], dims[1], 0);
+	window.redrawNVGScene = delegate (nvg){
 	for(int i = 0; i< fullWidth * fullHeight; i++){
 		sq.setCell(i / fullWidth, i %fullHeight, cast(ubyte)uniform(0, 2, rnd));
 	}
-	window.redrawNVGScene = delegate (nvg){
 		for(int width = 0; width < fullWidth; width++){
 			for(int height = 0; height < fullHeight; height++){
 				auto colors  = ruleset["cell colors"].get!(string[]);
