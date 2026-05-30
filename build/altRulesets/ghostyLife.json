@@ -1,0 +1,39 @@
+{
+	"automata name" : "Conway's game of life + ghosts",
+	"board dimensions" : [75, 50],
+	"cell names" : ["dead", "alive", "ghost"],
+	"cell colors": ["#333333","#CCCCCC", "#676767"],
+	"rules":{
+		"transformations" : {
+			"a->b" : [
+				["dead", "alive"],
+				["ghost", "alive"],
+				["alive", "alive"],
+				["alive", "ghost"],
+				["ghost", "dead"]
+			],
+			"nieghbors needed" : [
+				[3],
+				[3],
+				[2, 3],
+				[-1],
+				[-1]
+			],
+			"neigbor types tracked" : [
+			["alive"],
+			["alive"],
+			["alive"],
+			["alive"],
+			["alive"]
+			]
+		},
+		"kernel" : {
+			"dimensions" : [3, 3],
+			"grid" : [1, 1, 1,
+					  1, 0, 1,
+					  1 ,1 ,1],
+			"offsets": [[-1]],
+			"center" : [1,1]
+		}
+	}
+}

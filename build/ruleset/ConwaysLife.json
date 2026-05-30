@@ -1,8 +1,8 @@
 {
 	"automata name" : "Conway's game of life",
-	"board dimensions" : [50, 75],
+	"board dimensions" : [75, 50],
 	"cell names" : ["dead", "alive"],
-	"cell colors": ["#333333","#CCCCCC"],
+	"cell colors": ["#333333","#CCCCCC", "#676767"],
 	"rules":{
 		"transformations" : {
 			"a->b" : [
