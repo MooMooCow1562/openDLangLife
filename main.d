@@ -20,22 +20,14 @@ void main(){
 	auto fullHeight = dims[1];
 	//initialize our life automata.
 	squareLife sq = new squareLife(dims[0], dims[1], 0, ruleset);
-	//create a glider
-	sq.setCell(1, 1, 1);
-	sq.setCell(2, 1, 1);
-	sq.setCell(2, 2, 1);
-	sq.setCell(0, 2, 1);
-	sq.setCell(2, 3, 1);
-	//square
-	sq.setCell(5, 5, 1);
-	sq.setCell(5, 6, 1);
-	sq.setCell(6, 5, 1);
-	sq.setCell(6, 6, 1);	
-	//oscilator
-	sq.setCell(25, 25, 1);
-	sq.setCell(25, 26, 1);
-	sq.setCell(25, 27, 1);
-	
+	//random fill!	
+	import std.random;
+	auto rnd = Random(5);
+	for(int i = 0; i< fullWidth * fullHeight; i++){
+		if(i%3 != 0){
+			sq.setCell(i % fullWidth, i / fullWidth, cast(ubyte)uniform(0, (ruleset["cell names"].get!(string[])).length, rnd));
+		}
+	}
 	window.redrawNVGScene = delegate (nvg){
 		for(int width = 0; width < fullWidth; width++){
 			for(int height = 0; height < fullHeight; height++){

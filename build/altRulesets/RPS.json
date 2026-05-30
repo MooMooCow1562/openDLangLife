@@ -1,0 +1,51 @@
+{
+	"automata name" : "Rock Paper Scissors",
+	"board dimensions" : [75, 50],
+	"cell names" : ["nothing","rock", "paper", "scissors"],
+	"cell colors": ["#000000", "#b00b69","#69b00b", "#0b69b0"],
+	"rules":{
+		"transformations" : {
+			"a->b" : [
+				["scissors", "rock"],
+				["rock", "paper"],
+				["paper", "scissors"],
+				["scissors", "scissors"],
+				["rock", "rock"],
+				["paper", "paper"],
+				["nothing", "rock"],
+				["nothing", "paper"],
+				["nothing", "scissors"]
+			],
+			"nieghbors needed" : [
+				[1,2,3,4],
+				[1,2,3,4],
+				[1,2,3,4],
+				[-1],
+				[-1],
+				[-1],
+				[1,2,3,4],
+				[1,2,3,4],
+				[1,2,3,4]
+			],
+			"neigbor types tracked" : [
+			["rock"],
+			["paper"],
+			["scissors"],
+			["nothing"],
+			["nothing"],
+			["nothing"],
+			["rock"],
+			["paper"],
+			["scissors"]
+			]
+		},
+		"kernel" : {
+			"dimensions" : [3, 3],
+			"grid" : [0, 1, 0,
+					  1, 0, 1,
+					  0 ,1, 0],
+			"offsets": [[-1]],
+			"center" : [1,1]
+		}
+	}
+}
